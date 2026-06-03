@@ -477,26 +477,86 @@ function calcValorAuto(p) {
   calcA();
 }
 
+function limparErro(id) {
+  var el = document.getElementById(id);
+  if(el) el.remove();
+}
+function mostrarErro(refId, msg) {
+  limparErro(refId + '-erro');
+  var input = document.getElementById(refId);
+  var erro = document.createElement('div');
+  erro.id = refId + '-erro';
+  erro.style.cssText = 'font-size:12px;color:#c0392b;margin-top:4px;';
+  erro.textContent = '⚠ ' + msg;
+  input.parentNode.appendChild(erro);
+}
+
 function calcA() {
-  var p1=calcPer(document.getElementById('a-p1-ini').value, document.getElementById('a-p1-fim').value);
+  var p1ini = document.getElementById('a-p1-ini').value;
+  var p1fim = document.getElementById('a-p1-fim').value;
+
+  // Validar período 1: saída não pode ser <= entrada
+  limparErro('a-p1-fim-erro');
+  if(p1ini && p1fim) {
+    var ini1 = minsFrom(p1ini), fim1 = minsFrom(p1fim);
+    if(fim1 <= ini1) {
+      mostrarErro('a-p1-fim', 'A saída deve ser depois da entrada');
+      document.getElementById('a-p1-total').value = '';
+      document.getElementById('a-p1-badge').style.display = 'none';
+      document.getElementById('a-total-geral').value = '';
+      document.getElementById('a-valor-auto').style.display = 'none';
+      return;
+    }
+  }
+
+  var p1 = calcPer(p1ini, p1fim);
   document.getElementById('a-p1-total').value = p1!==null ? fmtMins(p1) : '';
-  var b1=document.getElementById('a-p1-badge');
+  var b1 = document.getElementById('a-p1-badge');
   if(p1!==null){b1.textContent=fmtMins(p1);b1.style.display='inline-block';}else{b1.style.display='none';}
   var totalMins = p1 || 0;
-  if(intervaloAtivoA){
-    var p2=calcPer(document.getElementById('a-p2-ini').value, document.getElementById('a-p2-fim').value);
+
+  if(intervaloAtivoA) {
+    var p2ini = document.getElementById('a-p2-ini').value;
+    var p2fim = document.getElementById('a-p2-fim').value;
+
+    limparErro('a-p2-ini-erro');
+    limparErro('a-p2-fim-erro');
+
+    // Validar: entrada do período 2 não pode ser antes da saída do período 1
+    if(p1fim && p2ini) {
+      var fim1m = minsFrom(p1fim), ini2m = minsFrom(p2ini);
+      if(ini2m < fim1m) {
+        mostrarErro('a-p2-ini', 'A entrada do período 2 não pode ser antes da saída do período 1 ('+p1fim+')');
+        document.getElementById('a-p2-total').value = '';
+        document.getElementById('a-p2-badge').style.display = 'none';
+        document.getElementById('a-total-geral').value = fmtMins(totalMins);
+        return;
+      }
+    }
+
+    // Validar: saída período 2 não pode ser antes da entrada período 2
+    if(p2ini && p2fim) {
+      var ini2 = minsFrom(p2ini), fim2 = minsFrom(p2fim);
+      if(fim2 <= ini2) {
+        mostrarErro('a-p2-fim', 'A saída do período 2 deve ser depois da entrada');
+        document.getElementById('a-p2-total').value = '';
+        document.getElementById('a-p2-badge').style.display = 'none';
+        document.getElementById('a-total-geral').value = fmtMins(totalMins);
+        return;
+      }
+    }
+
+    var p2 = calcPer(p2ini, p2fim);
     document.getElementById('a-p2-total').value = p2!==null ? fmtMins(p2) : '';
-    var b2=document.getElementById('a-p2-badge');
+    var b2 = document.getElementById('a-p2-badge');
     if(p2!==null){b2.textContent=fmtMins(p2);b2.style.display='inline-block';}else{b2.style.display='none';}
     totalMins += (p2 || 0);
   }
+
   // Total geral
   var totalGeralEl = document.getElementById('a-total-geral');
-  if(totalMins > 0) {
-    totalGeralEl.value = fmtMins(totalMins);
-  } else {
-    totalGeralEl.value = '';
-  }
+  totalGeralEl.value = totalMins > 0 ? fmtMins(totalMins) : '';
+
   // Preencher valor automaticamente
   var funcao = document.getElementById('a-funcao').value;
   var autoEl = document.getElementById('a-valor-auto');
