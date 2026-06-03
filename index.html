@@ -89,14 +89,29 @@
   /* PRINT */
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    html, body { margin: 0; padding: 0; background: white; }
-    .app-header, .no-print { display: none !important; }
-    .container { max-width: 100%; }
-    #recibo-container { display: block !important; }
-    .recibo-wrap { border: none; border-radius: 0; padding: 1cm 1.5cm; box-shadow: none; page-break-inside: avoid; }
-    .rec-header { border-bottom: 3px solid #7B1C2E !important; }
-    .rec-valor-box { background: #F5EEE9 !important; }
-    .rec-logo-mark { background: #7B1C2E !important; }
+    html, body { margin: 0; padding: 0; background: white; height: auto; }
+    .app-header, .no-print, .step { display: none !important; }
+    .container { max-width: 100%; padding: 0; margin: 0; }
+    #recibo-container { display: block !important; margin: 0; padding: 0; }
+    .recibo-wrap {
+      border: none; border-radius: 0; padding: 0.6cm 1.2cm;
+      box-shadow: none; margin: 0;
+      font-size: 12px;
+    }
+    .rec-juridico { font-size: 11.5px; line-height: 1.6; margin-bottom: 0.8rem; padding-bottom: 0.8rem; }
+    .rec-section { margin-bottom: 0.8rem; }
+    .rec-titulo { margin: 0.4rem 0 0.8rem; }
+    .rec-titulo h2 { font-size: 14px; }
+    .rec-header { padding-bottom: 0.8rem; margin-bottom: 0.8rem; border-bottom: 3px solid #7B1C2E !important; }
+    .rec-logo-name { font-size: 13px; }
+    .rec-valor-box { background: #F5EEE9 !important; padding: 0.5rem 0.8rem; margin: 0.5rem 0; }
+    .rec-valor-num { font-size: 18px; }
+    .rec-logo-mark { background: #7B1C2E !important; width: 32px; height: 32px; font-size: 11px; }
+    .rec-assinatura { margin-top: 1.5rem; }
+    .rec-assinatura-linha { margin-top: 2rem; }
+    .rec-footer { margin-top: 0.8rem; padding-top: 0.6rem; }
+    .rec-row { padding: 3px 0; }
+    @page { margin: 0; size: A4; }
   }
 
   @media (max-width: 480px) {
@@ -168,7 +183,7 @@
       <div class="card-title">Período trabalhado</div>
       <div class="grid2 field">
         <div><label>Data do serviço</label><input type="date" id="a-data" /></div>
-        <div><label>Valor a pagar (R$)</label><input type="number" id="a-valor" placeholder="0,00" min="0" step="0.01" /></div>
+        <div><label>Valor a pagar (R$)</label><input type="text" id="a-valor" placeholder="0,00" inputmode="decimal" /></div>
       </div>
       <div class="periodo-header">
         <span class="periodo-label">Período 1</span>
@@ -206,6 +221,10 @@
       <div class="field"><label>Nome do favorecido</label><input type="text" id="a-pix-nome" placeholder="Nome completo do titular da chave" /></div>
       <div class="field"><label>Banco / Instituição</label><input type="text" id="a-pix-banco" placeholder="Ex: Nubank, Caixa, Bradesco..." /></div>
     </div>
+    <div class="card">
+      <div class="card-title">Observações <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#aaa;font-size:11px">(opcional)</span></div>
+      <textarea id="a-obs" placeholder="Alguma observação relevante sobre esse pagamento..." rows="3" style="width:100%;font-family:'Lato',sans-serif;font-size:14px;border:1px solid #d0d0d0;border-radius:6px;padding:9px 12px;color:#1a1a1a;resize:vertical;outline:none;box-sizing:border-box;"></textarea>
+    </div>
     <div class="btn-row">
       <button class="btn-secondary" onclick="voltarStep1()">← Voltar</button>
       <button class="btn-primary" onclick="gerarRecibo('horario')">Gerar recibo</button>
@@ -227,7 +246,7 @@
       <div class="card-title">Data e valor</div>
       <div class="grid2">
         <div><label>Data do serviço</label><input type="date" id="b-data" /></div>
-        <div><label>Valor a pagar (R$)</label><input type="number" id="b-valor" placeholder="0,00" min="0" step="0.01" /></div>
+        <div><label>Valor a pagar (R$)</label><input type="text" id="b-valor" placeholder="0,00" inputmode="decimal" /></div>
       </div>
     </div>
     <div class="card">
@@ -243,6 +262,10 @@
       </div>
       <div class="field"><label>Nome do favorecido</label><input type="text" id="b-pix-nome" placeholder="Nome completo do titular da chave" /></div>
       <div class="field"><label>Banco / Instituição</label><input type="text" id="b-pix-banco" placeholder="Ex: Nubank, Caixa, Bradesco..." /></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Observações <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#aaa;font-size:11px">(opcional)</span></div>
+      <textarea id="b-obs" placeholder="Alguma observação relevante sobre esse pagamento..." rows="3" style="width:100%;font-family:'Lato',sans-serif;font-size:14px;border:1px solid #d0d0d0;border-radius:6px;padding:9px 12px;color:#1a1a1a;resize:vertical;outline:none;box-sizing:border-box;"></textarea>
     </div>
     <div class="btn-row">
       <button class="btn-secondary" onclick="voltarStep1()">← Voltar</button>
@@ -290,6 +313,10 @@
         <div class="rec-row"><span class="rec-col-label">Tipo de chave</span><span class="rec-col-value" id="rec-pix-tipo"></span></div>
         <div class="rec-row"><span class="rec-col-label">Chave Pix</span><span class="rec-col-value" id="rec-pix-chave"></span></div>
         <div class="rec-row"><span class="rec-col-label">Instituição</span><span class="rec-col-value" id="rec-pix-banco"></span></div>
+      </div>
+      <div class="rec-section" id="rec-obs-section" style="display:none">
+        <div class="rec-section-label">Observações</div>
+        <div style="font-size:13px;color:#1a1a1a;line-height:1.6;padding:4px 0" id="rec-obs-texto"></div>
       </div>
       <div class="rec-assinatura">
         <div class="rec-assinatura-linha">
@@ -427,7 +454,7 @@ function gerarRecibo(tipo) {
   var cpf      = document.getElementById(p+'-cpf').value.trim();
   var funcao   = document.getElementById(p+'-funcao').value.trim();
   var data     = document.getElementById(p+'-data').value;
-  var valor    = parseFloat(document.getElementById(p+'-valor').value);
+  var valor    = parseFloat(document.getElementById(p+'-valor').value.replace(',','.'));
   var pixTipo  = document.getElementById(p+'-pix-tipo').value;
   var pixChave = document.getElementById(p+'-pix-chave').value.trim();
   var pixNome  = document.getElementById(p+'-pix-nome').value.trim();
@@ -482,6 +509,14 @@ function gerarRecibo(tipo) {
   document.getElementById('rec-pix-nome').textContent  = pixNome;
   document.getElementById('rec-pix-banco').textContent = pixBanco;
   document.getElementById('rec-assina').textContent    = nome;
+
+  var obs = document.getElementById(p+'-obs').value.trim();
+  if(obs) {
+    document.getElementById('rec-obs-section').style.display = 'block';
+    document.getElementById('rec-obs-texto').textContent = obs;
+  } else {
+    document.getElementById('rec-obs-section').style.display = 'none';
+  }
   document.getElementById('rec-footer-loja').textContent = loja.nome.split('—')[0].trim();
   document.getElementById('rec-footer-data').textContent = formatDate(data);
 
