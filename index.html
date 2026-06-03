@@ -8,77 +8,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --vinho: #7B1C2E;
-    --vinho-dark: #6a1827;
-    --vinho-light: #F5EEE9;
-    --vinho-mid: #fdf5f5;
-    --text: #1a1a1a;
-    --text-muted: #666;
-    --text-hint: #aaa;
-    --border: #e5e5e5;
-    --border-mid: #d0d0d0;
-    --bg: #f4f1ee;
-    --white: #ffffff;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --vinho: #7B1C2E; --vinho-dark: #6a1827; --vinho-light: #F5EEE9;
+    --vinho-mid: #fdf5f5; --text: #1a1a1a; --text-muted: #666;
+    --text-hint: #aaa; --border: #e5e5e5; --border-mid: #d0d0d0;
+    --bg: #f4f1ee; --white: #ffffff; --radius: 10px; --radius-sm: 6px;
   }
-
-  body {
-    font-family: 'Lato', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-  }
-
-  /* TOPO */
-  .app-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .app-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 6px;
-  }
-  .app-logo-mark {
-    width: 44px; height: 44px;
-    background: var(--vinho);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-weight: 700; font-size: 15px; letter-spacing: 0.05em;
-  }
+  body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem 1rem 4rem; }
+  .app-header { text-align: center; margin-bottom: 2rem; }
+  .app-logo { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .app-logo-mark { width: 44px; height: 44px; background: var(--vinho); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 15px; }
   .app-logo-text { font-family: 'Merriweather', serif; font-size: 20px; color: var(--vinho); }
   .app-sub { font-size: 13px; color: var(--text-muted); }
-
-  /* CONTAINER */
   .container { max-width: 560px; margin: 0 auto; }
-
-  /* CARD */
-  .card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-  }
-  .card-title {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--vinho);
-    margin-bottom: 12px;
-  }
-
-  /* FORM */
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
+  .card-title { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--vinho); margin-bottom: 12px; }
   label { font-size: 13px; color: var(--text-muted); display: block; margin-bottom: 4px; }
-  input[type=text], input[type=number], input[type=date], input[type=time], select, textarea {
+  input[type=text], input[type=number], input[type=date], input[type=time], select {
     width: 100%; font-family: 'Lato', sans-serif; font-size: 14px;
     border: 1px solid var(--border-mid); border-radius: var(--radius-sm);
     padding: 9px 12px; color: var(--text); background: white;
-    outline: none; transition: border-color 0.15s;
-    -webkit-appearance: none; appearance: none;
+    outline: none; transition: border-color 0.15s; -webkit-appearance: none; appearance: none;
   }
   input:focus, select:focus { border-color: var(--vinho); }
   input[readonly] { background: #f9f9f9; color: var(--text-muted); cursor: default; }
@@ -86,139 +36,67 @@
   .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .field { margin-bottom: 12px; }
   .field:last-child { margin-bottom: 0; }
-
-  /* TIPO CARDS */
   .tipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .tipo-card {
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem; cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-  }
+  .tipo-card { border: 2px solid var(--border); border-radius: var(--radius); padding: 1rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
   .tipo-card:hover { border-color: var(--vinho); }
   .tipo-card.selected { border-color: var(--vinho); background: var(--vinho-mid); }
   .tipo-icon { font-size: 28px; margin-bottom: 8px; }
   .tipo-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
   .tipo-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
-
-  /* PERÍODO */
   .periodo-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
   .periodo-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-  .periodo-badge {
-    display: none; background: var(--vinho-light); color: var(--vinho);
-    font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px;
-  }
-  .toggle-intervalo {
-    font-size: 12px; color: var(--vinho); background: none; border: none;
-    cursor: pointer; padding: 6px 0; font-family: 'Lato', sans-serif; display: block;
-  }
+  .periodo-badge { display: none; background: var(--vinho-light); color: var(--vinho); font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; }
+  .toggle-intervalo { font-size: 12px; color: var(--vinho); background: none; border: none; cursor: pointer; padding: 6px 0; font-family: 'Lato', sans-serif; display: block; }
   .toggle-intervalo:hover { text-decoration: underline; }
-
-  /* BOTÕES */
   .btn-row { display: flex; gap: 10px; margin-top: 1.25rem; }
-  .btn-primary {
-    background: var(--vinho); color: white; border: none;
-    border-radius: var(--radius-sm); padding: 12px 20px;
-    font-size: 14px; font-weight: 700; font-family: 'Lato', sans-serif;
-    cursor: pointer; flex: 1; transition: background 0.15s;
-  }
+  .btn-primary { background: var(--vinho); color: white; border: none; border-radius: var(--radius-sm); padding: 12px 20px; font-size: 14px; font-weight: 700; font-family: 'Lato', sans-serif; cursor: pointer; flex: 1; transition: background 0.15s; }
   .btn-primary:hover { background: var(--vinho-dark); }
   .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
-  .btn-secondary {
-    background: white; color: var(--text); border: 1px solid var(--border-mid);
-    border-radius: var(--radius-sm); padding: 12px 20px;
-    font-size: 14px; font-family: 'Lato', sans-serif;
-    cursor: pointer; transition: background 0.15s;
-  }
+  .btn-secondary { background: white; color: var(--text); border: 1px solid var(--border-mid); border-radius: var(--radius-sm); padding: 12px 20px; font-size: 14px; font-family: 'Lato', sans-serif; cursor: pointer; transition: background 0.15s; }
   .btn-secondary:hover { background: #f9f9f9; }
-
-  /* STEP */
   .step { display: none; }
   .step.active { display: block; }
   .step-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
-
-  /* HINT */
   .hint { font-size: 12px; color: var(--text-hint); text-align: center; margin-top: 8px; }
 
-  /* ===== RECIBO ===== */
+  /* RECIBO */
   #recibo-container { display: none; }
-
-  .recibo-wrap {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 2rem;
-    font-family: 'Lato', sans-serif;
-    color: #1a1a1a;
-  }
-
-  .rec-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    padding-bottom: 1.25rem; margin-bottom: 1.25rem;
-    border-bottom: 3px solid var(--vinho);
-  }
+  .recibo-wrap { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; font-family: 'Lato', sans-serif; color: #1a1a1a; }
+  .rec-header { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 1.25rem; margin-bottom: 1.25rem; border-bottom: 3px solid var(--vinho); }
   .rec-logo { display: flex; align-items: center; gap: 10px; }
-  .rec-logo-mark {
-    width: 38px; height: 38px; background: var(--vinho);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    color: white; font-weight: 700; font-size: 13px; flex-shrink: 0;
-  }
+  .rec-logo-mark { width: 38px; height: 38px; background: var(--vinho); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; flex-shrink: 0; }
   .rec-logo-name { font-family: 'Merriweather', serif; font-size: 14px; color: #1a1a1a; }
   .rec-logo-sub { font-size: 10px; color: #888; margin-top: 2px; line-height: 1.3; }
-  .rec-badge {
-    background: var(--vinho-light); color: var(--vinho);
-    font-size: 11px; font-weight: 700; padding: 4px 12px;
-    border-radius: 20px; white-space: nowrap;
-  }
-
   .rec-titulo { text-align: center; margin: 0.75rem 0 1.25rem; }
   .rec-titulo h2 { font-family: 'Merriweather', serif; font-size: 16px; font-weight: 700; color: #1a1a1a; }
   .rec-titulo p { font-size: 12px; color: #888; margin-top: 4px; }
-
-  .rec-juridico {
-    font-size: 13px; color: #1a1a1a; line-height: 1.75;
-    margin-bottom: 1.25rem; padding-bottom: 1.25rem;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
+  .rec-juridico { font-size: 13px; color: #1a1a1a; line-height: 1.75; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid #f0f0f0; }
   .rec-section { margin-bottom: 1.25rem; }
-  .rec-section-label {
-    font-size: 10px; font-weight: 700; color: var(--vinho);
-    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
-  }
-  .rec-row {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    padding: 5px 0; border-bottom: 1px solid #f5f5f5;
-  }
+  .rec-section-label { font-size: 10px; font-weight: 700; color: var(--vinho); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .rec-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 5px 0; border-bottom: 1px solid #f5f5f5; }
   .rec-row:last-child { border-bottom: none; }
   .rec-col-label { font-size: 12px; color: #888; flex: 0 0 145px; }
   .rec-col-value { font-size: 13px; color: #1a1a1a; font-weight: 700; text-align: right; flex: 1; }
-
-  .rec-valor-box {
-    background: var(--vinho-light); border-radius: 8px;
-    padding: 0.85rem 1rem; display: flex;
-    justify-content: space-between; align-items: center; margin: 0.75rem 0;
-  }
+  .rec-valor-box { background: var(--vinho-light); border-radius: 8px; padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; margin: 0.75rem 0; }
   .rec-valor-label { font-size: 12px; color: var(--vinho); font-weight: 700; }
   .rec-valor-num { font-family: 'Merriweather', serif; font-size: 22px; font-weight: 700; color: var(--vinho); }
-
   .rec-assinatura { text-align: center; max-width: 240px; margin: 2.5rem auto 0; }
   .rec-assinatura-linha { border-top: 1px solid #ccc; padding-top: 6px; margin-top: 3rem; }
   .rec-assinatura-nome { font-size: 12px; font-weight: 700; color: #1a1a1a; }
   .rec-assinatura-sub { font-size: 11px; color: #888; margin-top: 2px; }
-
-  .rec-footer {
-    margin-top: 1.5rem; padding-top: 1rem;
-    border-top: 1px solid #f0f0f0;
-    text-align: center; font-size: 10px; color: #bbb;
-  }
+  .rec-footer { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #f0f0f0; text-align: center; font-size: 10px; color: #bbb; }
 
   /* PRINT */
   @media print {
-    body { background: white; padding: 0; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body { margin: 0; padding: 0; background: white; }
     .app-header, .no-print { display: none !important; }
-    .recibo-wrap { border: none; padding: 1cm; border-radius: 0; }
-    .rec-header { border-bottom-color: #7B1C2E !important; }
+    .container { max-width: 100%; }
+    #recibo-container { display: block !important; }
+    .recibo-wrap { border: none; border-radius: 0; padding: 1cm 1.5cm; box-shadow: none; page-break-inside: avoid; }
+    .rec-header { border-bottom: 3px solid #7B1C2E !important; }
+    .rec-valor-box { background: #F5EEE9 !important; }
+    .rec-logo-mark { background: #7B1C2E !important; }
   }
 
   @media (max-width: 480px) {
@@ -241,7 +119,7 @@
 
 <div class="container">
 
-  <!-- STEP 1: Loja + Tipo -->
+  <!-- STEP 1 -->
   <div class="step active" id="step1">
     <div class="card">
       <div class="card-title">Unidade</div>
@@ -255,7 +133,6 @@
         </select>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">Tipo de recibo</div>
       <div class="tipo-grid">
@@ -271,7 +148,6 @@
         </div>
       </div>
     </div>
-
     <div class="btn-row">
       <button class="btn-primary" id="btn-avancar" onclick="avancarStep2()" disabled>Avançar →</button>
     </div>
@@ -280,26 +156,20 @@
   <!-- STEP 2A: Hora Extra -->
   <div class="step" id="step2a">
     <div class="step-label" id="2a-titulo"></div>
-
     <div class="card">
       <div class="card-title">Identificação</div>
       <div class="grid2 field">
         <div><label>Nome completo</label><input type="text" id="a-nome" placeholder="João da Silva Santos" /></div>
         <div><label>CPF</label><input type="text" id="a-cpf" placeholder="000.000.000-00" maxlength="14" /></div>
       </div>
-      <div class="field">
-        <label>Função exercida</label>
-        <input type="text" id="a-funcao" placeholder="Ex: Garçom, Cozinheiro, Caixa..." />
-      </div>
+      <div class="field"><label>Função exercida</label><input type="text" id="a-funcao" placeholder="Ex: Garçom, Cozinheiro, Caixa..." /></div>
     </div>
-
     <div class="card">
       <div class="card-title">Período trabalhado</div>
       <div class="grid2 field">
         <div><label>Data do serviço</label><input type="date" id="a-data" /></div>
         <div><label>Valor a pagar (R$)</label><input type="number" id="a-valor" placeholder="0,00" min="0" step="0.01" /></div>
       </div>
-
       <div class="periodo-header">
         <span class="periodo-label">Período 1</span>
         <span class="periodo-badge" id="a-p1-badge"></span>
@@ -309,7 +179,6 @@
         <div><label>Saída</label><input type="time" id="a-p1-fim" oninput="calcA()" /></div>
         <div><label>Total</label><input type="text" id="a-p1-total" readonly placeholder="—" /></div>
       </div>
-
       <div id="a-intervalo-section" style="display:none">
         <div class="periodo-header" style="margin-top:8px">
           <span class="periodo-label">Período 2 — após intervalo</span>
@@ -323,24 +192,20 @@
       </div>
       <button class="toggle-intervalo" id="a-btn-intervalo" onclick="toggleIntervaloA()">+ Adicionar intervalo (segundo período)</button>
     </div>
-
     <div class="card">
       <div class="card-title">Dados para pagamento via Pix</div>
       <div class="grid2 field">
-        <div>
-          <label>Tipo de chave</label>
+        <div><label>Tipo de chave</label>
           <select id="a-pix-tipo" onchange="mascaraPix('a')">
-            <option value="CPF">CPF</option>
-            <option value="Telefone">Telefone</option>
-            <option value="E-mail">E-mail</option>
-            <option value="Chave aleatória">Chave aleatória</option>
+            <option value="CPF">CPF</option><option value="Telefone">Telefone</option>
+            <option value="E-mail">E-mail</option><option value="Chave aleatória">Chave aleatória</option>
           </select>
         </div>
         <div><label>Chave Pix</label><input type="text" id="a-pix-chave" placeholder="000.000.000-00" maxlength="44" oninput="aplicarMascaraPix('a')" /></div>
       </div>
+      <div class="field"><label>Nome do favorecido</label><input type="text" id="a-pix-nome" placeholder="Nome completo do titular da chave" /></div>
       <div class="field"><label>Banco / Instituição</label><input type="text" id="a-pix-banco" placeholder="Ex: Nubank, Caixa, Bradesco..." /></div>
     </div>
-
     <div class="btn-row">
       <button class="btn-secondary" onclick="voltarStep1()">← Voltar</button>
       <button class="btn-primary" onclick="gerarRecibo('horario')">Gerar recibo</button>
@@ -350,19 +215,14 @@
   <!-- STEP 2B: Extra Diário -->
   <div class="step" id="step2b">
     <div class="step-label" id="2b-titulo"></div>
-
     <div class="card">
       <div class="card-title">Identificação</div>
       <div class="grid2 field">
         <div><label>Nome completo</label><input type="text" id="b-nome" placeholder="João da Silva Santos" /></div>
         <div><label>CPF</label><input type="text" id="b-cpf" placeholder="000.000.000-00" maxlength="14" /></div>
       </div>
-      <div class="field">
-        <label>Função exercida</label>
-        <input type="text" id="b-funcao" placeholder="Ex: Garçom, Cozinheiro, Caixa..." />
-      </div>
+      <div class="field"><label>Função exercida</label><input type="text" id="b-funcao" placeholder="Ex: Garçom, Cozinheiro, Caixa..." /></div>
     </div>
-
     <div class="card">
       <div class="card-title">Data e valor</div>
       <div class="grid2">
@@ -370,24 +230,20 @@
         <div><label>Valor a pagar (R$)</label><input type="number" id="b-valor" placeholder="0,00" min="0" step="0.01" /></div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">Dados para pagamento via Pix</div>
       <div class="grid2 field">
-        <div>
-          <label>Tipo de chave</label>
+        <div><label>Tipo de chave</label>
           <select id="b-pix-tipo" onchange="mascaraPix('b')">
-            <option value="CPF">CPF</option>
-            <option value="Telefone">Telefone</option>
-            <option value="E-mail">E-mail</option>
-            <option value="Chave aleatória">Chave aleatória</option>
+            <option value="CPF">CPF</option><option value="Telefone">Telefone</option>
+            <option value="E-mail">E-mail</option><option value="Chave aleatória">Chave aleatória</option>
           </select>
         </div>
         <div><label>Chave Pix</label><input type="text" id="b-pix-chave" placeholder="000.000.000-00" maxlength="44" oninput="aplicarMascaraPix('b')" /></div>
       </div>
+      <div class="field"><label>Nome do favorecido</label><input type="text" id="b-pix-nome" placeholder="Nome completo do titular da chave" /></div>
       <div class="field"><label>Banco / Instituição</label><input type="text" id="b-pix-banco" placeholder="Ex: Nubank, Caixa, Bradesco..." /></div>
     </div>
-
     <div class="btn-row">
       <button class="btn-secondary" onclick="voltarStep1()">← Voltar</button>
       <button class="btn-primary" onclick="gerarRecibo('diario')">Gerar recibo</button>
@@ -405,23 +261,18 @@
             <div class="rec-logo-sub" id="rec-razao-sub"></div>
           </div>
         </div>
-        <span class="rec-badge" id="rec-badge"></span>
       </div>
-
       <div class="rec-titulo">
         <h2>Recibo de Pagamento</h2>
         <p id="rec-loja-nome"></p>
       </div>
-
       <div class="rec-juridico" id="rec-juridico"></div>
-
       <div class="rec-section">
         <div class="rec-section-label">Identificação</div>
         <div class="rec-row"><span class="rec-col-label">Nome completo</span><span class="rec-col-value" id="rec-nome"></span></div>
         <div class="rec-row"><span class="rec-col-label">CPF</span><span class="rec-col-value" id="rec-cpf"></span></div>
         <div class="rec-row"><span class="rec-col-label">Função exercida</span><span class="rec-col-value" id="rec-funcao"></span></div>
       </div>
-
       <div class="rec-section">
         <div class="rec-section-label">Período do serviço</div>
         <div class="rec-row"><span class="rec-col-label">Data</span><span class="rec-col-value" id="rec-data"></span></div>
@@ -429,31 +280,27 @@
         <div class="rec-row" id="rec-row-p2"><span class="rec-col-label">Período 2</span><span class="rec-col-value" id="rec-p2"></span></div>
         <div class="rec-row" id="rec-row-total-h"><span class="rec-col-label">Total trabalhado</span><span class="rec-col-value" id="rec-total-h"></span></div>
       </div>
-
       <div class="rec-valor-box">
         <span class="rec-valor-label">Valor</span>
         <span class="rec-valor-num" id="rec-valor"></span>
       </div>
-
       <div class="rec-section">
         <div class="rec-section-label">Dados para pagamento via Pix</div>
+        <div class="rec-row"><span class="rec-col-label">Nome do favorecido</span><span class="rec-col-value" id="rec-pix-nome"></span></div>
         <div class="rec-row"><span class="rec-col-label">Tipo de chave</span><span class="rec-col-value" id="rec-pix-tipo"></span></div>
         <div class="rec-row"><span class="rec-col-label">Chave Pix</span><span class="rec-col-value" id="rec-pix-chave"></span></div>
         <div class="rec-row"><span class="rec-col-label">Instituição</span><span class="rec-col-value" id="rec-pix-banco"></span></div>
       </div>
-
       <div class="rec-assinatura">
         <div class="rec-assinatura-linha">
           <div class="rec-assinatura-nome" id="rec-assina"></div>
           <div class="rec-assinatura-sub">Assinatura</div>
         </div>
       </div>
-
       <div class="rec-footer">
         Kombina Felice — <span id="rec-footer-loja"></span> — <span id="rec-footer-data"></span>
       </div>
     </div>
-
     <div class="btn-row no-print" style="margin-top:1rem">
       <button class="btn-secondary" onclick="voltarFormulario()">← Editar</button>
       <button class="btn-primary" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
@@ -461,7 +308,7 @@
     <p class="hint no-print">Na janela de impressão, escolha "Salvar como PDF"</p>
   </div>
 
-</div><!-- /container -->
+</div>
 
 <script>
 var LOJAS = {
@@ -470,11 +317,7 @@ var LOJAS = {
   blu: { nome: 'Blumenau — Shopping Neumarkt', razao: 'KF GESTÃO LTDA', cnpj: '60.722.023/0001-31', endereco: 'Rua Sete de Setembro, n° 1213, Centro, Blumenau – SC' },
   flo: { nome: 'Florianópolis — Passeio Primavera', razao: 'KF GESTÃO LTDA', cnpj: '60.722.023/0001-31', endereco: 'Rod. João Carlos Daux, n° 4150 km 04 Loja 5, bairro Saco Grande, Florianópolis – SC' }
 };
-
-var tipoSelecionado = null;
-var intervaloAtivoA = false;
-var ultimoTipo = null;
-var lojaAtual = null;
+var tipoSelecionado = null, intervaloAtivoA = false, ultimoTipo = null, lojaAtual = null;
 
 function checkStep1() {
   lojaAtual = document.getElementById('loja').value;
@@ -482,89 +325,81 @@ function checkStep1() {
 }
 function selecionarTipo(t) {
   tipoSelecionado = t;
-  document.getElementById('tipo-horario').classList.toggle('selected', t === 'horario');
-  document.getElementById('tipo-diario').classList.toggle('selected', t === 'diario');
+  document.getElementById('tipo-horario').classList.toggle('selected', t==='horario');
+  document.getElementById('tipo-diario').classList.toggle('selected', t==='diario');
   checkStep1();
 }
 function avancarStep2() {
   var loja = LOJAS[lojaAtual];
-  var sub = loja.nome + ' — ' + (tipoSelecionado === 'horario' ? 'Hora Extra' : 'Extra Diário');
+  var sub = loja.nome + ' — ' + (tipoSelecionado==='horario' ? 'Hora Extra' : 'Extra Diário');
   document.getElementById('2a-titulo').textContent = sub;
   document.getElementById('2b-titulo').textContent = sub;
   setStep('step1', false);
-  setStep(tipoSelecionado === 'horario' ? 'step2a' : 'step2b', true);
+  setStep(tipoSelecionado==='horario' ? 'step2a' : 'step2b', true);
 }
-function voltarStep1() {
-  setStep('step2a', false); setStep('step2b', false);
-  setStep('step1', true);
-}
+function voltarStep1() { setStep('step2a',false); setStep('step2b',false); setStep('step1',true); }
 function voltarFormulario() {
   document.getElementById('recibo-container').style.display = 'none';
-  setStep(ultimoTipo === 'horario' ? 'step2a' : 'step2b', true);
+  setStep(ultimoTipo==='horario' ? 'step2a' : 'step2b', true);
 }
-function setStep(id, show) {
-  document.getElementById(id).classList.toggle('active', show);
-}
+function setStep(id, show) { document.getElementById(id).classList.toggle('active', show); }
 
 function maskCPF(v) {
-  v = v.replace(/\D/g, '').slice(0, 11);
-  if (v.length > 9) return v.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-  if (v.length > 6) return v.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3');
-  if (v.length > 3) return v.replace(/(\d{3})(\d+)/, '$1.$2');
+  v = v.replace(/\D/g,'').slice(0,11);
+  if(v.length>9) return v.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/,'$1.$2.$3-$4');
+  if(v.length>6) return v.replace(/(\d{3})(\d{3})(\d+)/,'$1.$2.$3');
+  if(v.length>3) return v.replace(/(\d{3})(\d+)/,'$1.$2');
   return v;
 }
 function maskFone(v) {
-  v = v.replace(/\D/g, '').slice(0, 11);
-  if (v.length > 10) return v.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-  if (v.length > 6)  return v.replace(/(\d{2})(\d{4,5})(\d+)/, '($1) $2-$3');
-  if (v.length > 2)  return v.replace(/(\d{2})(\d+)/, '($1) $2');
+  v = v.replace(/\D/g,'').slice(0,11);
+  if(v.length>10) return v.replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3');
+  if(v.length>6)  return v.replace(/(\d{2})(\d{4,5})(\d+)/,'($1) $2-$3');
+  if(v.length>2)  return v.replace(/(\d{2})(\d+)/,'($1) $2');
   return v;
 }
-['a-cpf','b-cpf'].forEach(function(id) {
-  document.getElementById(id).addEventListener('input', function() { this.value = maskCPF(this.value); });
+['a-cpf','b-cpf'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', function(){ this.value = maskCPF(this.value); });
 });
 function mascaraPix(p) {
-  var tipo = document.getElementById(p + '-pix-tipo').value;
-  var campo = document.getElementById(p + '-pix-chave');
+  var tipo = document.getElementById(p+'-pix-tipo').value;
+  var campo = document.getElementById(p+'-pix-chave');
   campo.value = '';
-  if (tipo === 'CPF')            { campo.placeholder = '000.000.000-00'; campo.maxLength = 14; }
-  else if (tipo === 'Telefone')  { campo.placeholder = '(00) 00000-0000'; campo.maxLength = 15; }
-  else if (tipo === 'E-mail')    { campo.placeholder = 'email@exemplo.com'; campo.maxLength = 60; }
-  else                           { campo.placeholder = 'Chave aleatória'; campo.maxLength = 44; }
+  if(tipo==='CPF')           { campo.placeholder='000.000.000-00'; campo.maxLength=14; }
+  else if(tipo==='Telefone') { campo.placeholder='(00) 00000-0000'; campo.maxLength=15; }
+  else if(tipo==='E-mail')   { campo.placeholder='email@exemplo.com'; campo.maxLength=60; }
+  else                       { campo.placeholder='Chave aleatória'; campo.maxLength=44; }
 }
 function aplicarMascaraPix(p) {
-  var tipo = document.getElementById(p + '-pix-tipo').value;
-  var campo = document.getElementById(p + '-pix-chave');
-  if (tipo === 'CPF') campo.value = maskCPF(campo.value);
-  else if (tipo === 'Telefone') campo.value = maskFone(campo.value);
+  var tipo = document.getElementById(p+'-pix-tipo').value;
+  var campo = document.getElementById(p+'-pix-chave');
+  if(tipo==='CPF') campo.value = maskCPF(campo.value);
+  else if(tipo==='Telefone') campo.value = maskFone(campo.value);
 }
 
-function minsFrom(t) {
-  if (!t) return null;
-  var p = t.split(':'); return parseInt(p[0]) * 60 + parseInt(p[1]);
-}
-function calcPer(ini, fim) {
-  var a = minsFrom(ini), b = minsFrom(fim);
-  if (a === null || b === null) return null;
-  var d = b - a; if (d < 0) d += 1440; return d;
+function minsFrom(t) { if(!t) return null; var p=t.split(':'); return parseInt(p[0])*60+parseInt(p[1]); }
+function calcPer(ini,fim) {
+  var a=minsFrom(ini), b=minsFrom(fim);
+  if(a===null||b===null) return null;
+  var d=b-a; if(d<0) d+=1440; return d;
 }
 function fmtMins(m) {
-  if (m === null || m === undefined) return '—';
-  var h = Math.floor(m / 60), min = m % 60;
-  if (h === 0) return min + 'min';
-  if (min === 0) return h + 'h';
-  return h + 'h' + String(min).padStart(2, '0') + 'min';
+  if(m===null||m===undefined) return '—';
+  var h=Math.floor(m/60), min=m%60;
+  if(h===0) return min+'min';
+  if(min===0) return h+'h';
+  return h+'h'+String(min).padStart(2,'0')+'min';
 }
 function calcA() {
-  var p1 = calcPer(document.getElementById('a-p1-ini').value, document.getElementById('a-p1-fim').value);
-  document.getElementById('a-p1-total').value = p1 !== null ? fmtMins(p1) : '';
-  var b1 = document.getElementById('a-p1-badge');
-  if (p1 !== null) { b1.textContent = fmtMins(p1); b1.style.display = 'inline-block'; } else { b1.style.display = 'none'; }
-  if (intervaloAtivoA) {
-    var p2 = calcPer(document.getElementById('a-p2-ini').value, document.getElementById('a-p2-fim').value);
-    document.getElementById('a-p2-total').value = p2 !== null ? fmtMins(p2) : '';
-    var b2 = document.getElementById('a-p2-badge');
-    if (p2 !== null) { b2.textContent = fmtMins(p2); b2.style.display = 'inline-block'; } else { b2.style.display = 'none'; }
+  var p1=calcPer(document.getElementById('a-p1-ini').value, document.getElementById('a-p1-fim').value);
+  document.getElementById('a-p1-total').value = p1!==null ? fmtMins(p1) : '';
+  var b1=document.getElementById('a-p1-badge');
+  if(p1!==null){b1.textContent=fmtMins(p1);b1.style.display='inline-block';}else{b1.style.display='none';}
+  if(intervaloAtivoA){
+    var p2=calcPer(document.getElementById('a-p2-ini').value, document.getElementById('a-p2-fim').value);
+    document.getElementById('a-p2-total').value = p2!==null ? fmtMins(p2) : '';
+    var b2=document.getElementById('a-p2-badge');
+    if(p2!==null){b2.textContent=fmtMins(p2);b2.style.display='inline-block';}else{b2.style.display='none';}
   }
 }
 function toggleIntervaloA() {
@@ -575,89 +410,84 @@ function toggleIntervaloA() {
 }
 
 function formatDate(d) {
-  if (!d) return '';
-  var p = d.split('-');
-  var m = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
-  return parseInt(p[2]) + ' de ' + m[parseInt(p[1]) - 1] + ' de ' + p[0];
+  if(!d) return '';
+  var p=d.split('-');
+  var m=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  return parseInt(p[2])+' de '+m[parseInt(p[1])-1]+' de '+p[0];
 }
 function formatDateBR(d) {
-  if (!d) return '';
-  var p = d.split('-'); return p[2] + '/' + p[1] + '/' + p[0];
+  if(!d) return '';
+  var p=d.split('-'); return p[2]+'/'+p[1]+'/'+p[0];
 }
 
 function gerarRecibo(tipo) {
   ultimoTipo = tipo;
-  var p = tipo === 'horario' ? 'a' : 'b';
-  var nome   = document.getElementById(p + '-nome').value.trim();
-  var cpf    = document.getElementById(p + '-cpf').value.trim();
-  var funcao = document.getElementById(p + '-funcao').value.trim();
-  var data   = document.getElementById(p + '-data').value;
-  var valor  = parseFloat(document.getElementById(p + '-valor').value);
-  var pixTipo  = document.getElementById(p + '-pix-tipo').value;
-  var pixChave = document.getElementById(p + '-pix-chave').value.trim();
-  var pixBanco = document.getElementById(p + '-pix-banco').value.trim();
+  var p = tipo==='horario' ? 'a' : 'b';
+  var nome     = document.getElementById(p+'-nome').value.trim();
+  var cpf      = document.getElementById(p+'-cpf').value.trim();
+  var funcao   = document.getElementById(p+'-funcao').value.trim();
+  var data     = document.getElementById(p+'-data').value;
+  var valor    = parseFloat(document.getElementById(p+'-valor').value);
+  var pixTipo  = document.getElementById(p+'-pix-tipo').value;
+  var pixChave = document.getElementById(p+'-pix-chave').value.trim();
+  var pixNome  = document.getElementById(p+'-pix-nome').value.trim();
+  var pixBanco = document.getElementById(p+'-pix-banco').value.trim();
 
-  if (!nome || !cpf || !funcao || !data || isNaN(valor) || !pixChave || !pixBanco) {
+  if(!nome||!cpf||!funcao||!data||isNaN(valor)||!pixChave||!pixNome||!pixBanco){
     alert('Por favor, preencha todos os campos antes de gerar o recibo.'); return;
   }
 
   var loja = LOJAS[lojaAtual];
-  var valorFmt = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  var valorFmt = valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
   var dataFmt  = formatDateBR(data);
-  var textoJur = '';
 
-  document.getElementById('rec-razao-sub').textContent = loja.razao + ' — CNPJ ' + loja.cnpj;
+  document.getElementById('rec-razao-sub').textContent = loja.razao+' — CNPJ '+loja.cnpj;
   document.getElementById('rec-loja-nome').textContent = loja.nome;
-  document.getElementById('rec-badge').textContent = tipo === 'horario' ? 'Hora Extra' : 'Extra Diário';
 
-  if (tipo === 'horario') {
-    var p1ini = document.getElementById('a-p1-ini').value;
-    var p1fim = document.getElementById('a-p1-fim').value;
-    if (!p1ini || !p1fim) { alert('Informe os horários do período 1.'); return; }
-    var p1m = calcPer(p1ini, p1fim), total = p1m || 0;
-    var horarioStr = 'das ' + p1ini + ' às ' + p1fim;
-
-    document.getElementById('rec-row-p1').style.display = 'flex';
-    document.getElementById('rec-p1').textContent = p1ini + ' às ' + p1fim + ' (' + fmtMins(p1m) + ')';
-
-    if (intervaloAtivoA) {
-      var p2ini = document.getElementById('a-p2-ini').value;
-      var p2fim = document.getElementById('a-p2-fim').value;
-      if (p2ini && p2fim) {
-        var p2m = calcPer(p2ini, p2fim); total += (p2m || 0);
-        horarioStr += ' e das ' + p2ini + ' às ' + p2fim;
-        document.getElementById('rec-row-p2').style.display = 'flex';
-        document.getElementById('rec-p2').textContent = p2ini + ' às ' + p2fim + ' (' + fmtMins(p2m) + ')';
-      } else { document.getElementById('rec-row-p2').style.display = 'none'; }
-    } else { document.getElementById('rec-row-p2').style.display = 'none'; }
-
-    document.getElementById('rec-row-total-h').style.display = 'flex';
-    document.getElementById('rec-total-h').textContent = fmtMins(total);
-
-    textoJur = 'O cidadão <strong>' + nome + '</strong>, inscrito no CPF n° <strong>' + cpf + '</strong>, recebeu de <strong>' + loja.razao + '</strong>, CNPJ: <strong>' + loja.cnpj + '</strong>, com prestação de serviço no endereço <strong>' + loja.endereco + '</strong>, o valor de <strong>' + valorFmt + '</strong> referente ao dia <strong>' + dataFmt + '</strong>, pelo exercício da função de <strong>' + funcao + '</strong>, ' + horarioStr + ', totalizando <strong>' + fmtMins(total) + '</strong> trabalhadas.';
+  var textoJur = '';
+  if(tipo==='horario'){
+    var p1ini=document.getElementById('a-p1-ini').value, p1fim=document.getElementById('a-p1-fim').value;
+    if(!p1ini||!p1fim){alert('Informe os horários do período 1.'); return;}
+    var p1m=calcPer(p1ini,p1fim), total=p1m||0;
+    var horarioStr='das '+p1ini+' às '+p1fim;
+    document.getElementById('rec-row-p1').style.display='flex';
+    document.getElementById('rec-p1').textContent=p1ini+' às '+p1fim+' ('+fmtMins(p1m)+')';
+    if(intervaloAtivoA){
+      var p2ini=document.getElementById('a-p2-ini').value, p2fim=document.getElementById('a-p2-fim').value;
+      if(p2ini&&p2fim){
+        var p2m=calcPer(p2ini,p2fim); total+=(p2m||0);
+        horarioStr+=' e das '+p2ini+' às '+p2fim;
+        document.getElementById('rec-row-p2').style.display='flex';
+        document.getElementById('rec-p2').textContent=p2ini+' às '+p2fim+' ('+fmtMins(p2m)+')';
+      } else { document.getElementById('rec-row-p2').style.display='none'; }
+    } else { document.getElementById('rec-row-p2').style.display='none'; }
+    document.getElementById('rec-row-total-h').style.display='flex';
+    document.getElementById('rec-total-h').textContent=fmtMins(total);
+    textoJur='O cidadão <strong>'+nome+'</strong>, inscrito no CPF n° <strong>'+cpf+'</strong>, recebeu de <strong>'+loja.razao+'</strong>, CNPJ: <strong>'+loja.cnpj+'</strong>, com prestação de serviço no endereço <strong>'+loja.endereco+'</strong>, o valor de <strong>'+valorFmt+'</strong> referente ao dia <strong>'+dataFmt+'</strong>, pelo exercício da função de <strong>'+funcao+'</strong>, '+horarioStr+', totalizando <strong>'+fmtMins(total)+'</strong> trabalhadas.';
   } else {
-    document.getElementById('rec-row-p1').style.display = 'none';
-    document.getElementById('rec-row-p2').style.display = 'none';
-    document.getElementById('rec-row-total-h').style.display = 'none';
-    textoJur = 'O cidadão <strong>' + nome + '</strong>, inscrito no CPF n° <strong>' + cpf + '</strong>, recebeu de <strong>' + loja.razao + '</strong>, CNPJ: <strong>' + loja.cnpj + '</strong>, com prestação de serviço no endereço <strong>' + loja.endereco + '</strong>, o valor de <strong>' + valorFmt + '</strong> referente ao dia <strong>' + dataFmt + '</strong>, pelo exercício da função de <strong>' + funcao + '</strong>.';
+    document.getElementById('rec-row-p1').style.display='none';
+    document.getElementById('rec-row-p2').style.display='none';
+    document.getElementById('rec-row-total-h').style.display='none';
+    textoJur='O cidadão <strong>'+nome+'</strong>, inscrito no CPF n° <strong>'+cpf+'</strong>, recebeu de <strong>'+loja.razao+'</strong>, CNPJ: <strong>'+loja.cnpj+'</strong>, com prestação de serviço no endereço <strong>'+loja.endereco+'</strong>, o valor de <strong>'+valorFmt+'</strong> referente ao dia <strong>'+dataFmt+'</strong>, pelo exercício da função de <strong>'+funcao+'</strong>.';
   }
 
-  document.getElementById('rec-juridico').innerHTML = textoJur;
-  document.getElementById('rec-nome').textContent    = nome;
-  document.getElementById('rec-cpf').textContent     = cpf;
-  document.getElementById('rec-funcao').textContent  = funcao;
-  document.getElementById('rec-data').textContent    = formatDate(data);
-  document.getElementById('rec-valor').textContent   = valorFmt;
+  document.getElementById('rec-juridico').innerHTML  = textoJur;
+  document.getElementById('rec-nome').textContent     = nome;
+  document.getElementById('rec-cpf').textContent      = cpf;
+  document.getElementById('rec-funcao').textContent   = funcao;
+  document.getElementById('rec-data').textContent     = formatDate(data);
+  document.getElementById('rec-valor').textContent    = valorFmt;
   document.getElementById('rec-pix-tipo').textContent  = pixTipo;
   document.getElementById('rec-pix-chave').textContent = pixChave;
+  document.getElementById('rec-pix-nome').textContent  = pixNome;
   document.getElementById('rec-pix-banco').textContent = pixBanco;
   document.getElementById('rec-assina').textContent    = nome;
   document.getElementById('rec-footer-loja').textContent = loja.nome.split('—')[0].trim();
   document.getElementById('rec-footer-data').textContent = formatDate(data);
 
-  setStep('step2a', false); setStep('step2b', false);
-  document.getElementById('recibo-container').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setStep('step2a',false); setStep('step2b',false);
+  document.getElementById('recibo-container').style.display='block';
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 </script>
 </body>
